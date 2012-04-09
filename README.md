@@ -8,6 +8,5 @@ It works the same way:
 ```ruby
 2.hours
 1.minute
-
 3.weeks
 ```
