@@ -10,3 +10,13 @@ It works the same way:
 1.minute
 3.weeks
 ```
+
+
+
+# Duration
+
+Another activesupport alternative
+
+```ruby
+120.human_duration => "2 mins"
+```
