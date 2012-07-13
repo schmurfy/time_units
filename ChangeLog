@@ -1,0 +1,7 @@
+
+
+# 0.2.0
+
+- added months and years
+- human_duration now take an argument allowing to limit the number of fields returned
+  (ex: (2.months + 1.hour + 10.seconds).human_duration(2) => "2 months 1 hour" )
