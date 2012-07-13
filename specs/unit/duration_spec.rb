@@ -18,5 +18,9 @@ describe 'TimeDuration' do
     (2*day1 + 21*hour1 + 3).human_duration.should == "2 days 21 hours 3 s"
     
     (2.weeks + 36.hours).human_duration.should == "2 weeks 1 day 12 hours"
+    (2.weeks + 36.hours).human_duration(2).should == "2 weeks 1 day"
+    
+    (2.months).human_duration.should == "2 months"
+    (2.years + 1.month).human_duration.should == "2 years 1 month"
   end
 end

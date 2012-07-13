@@ -5,21 +5,25 @@ module TimeDuration
   end
   
   self.units = [
-    [1.week,    :weeks,   "week", "weeks"],
-    [1.day,     :days,    "day", 'days'],
-    [1.hour,    :hours,   "hour", "hours"],
-    [1.minute,  :minutes, "min", "mins"],
-    [1,         :seconds, "s", "s"]
+    [1.year,    :years,   "year",   "years"],
+    [1.month,   :months,  "month",  "months"],
+    [1.week,    :weeks,   "week",   "weeks"],
+    [1.day,     :days,    "day",    "days"],
+    [1.hour,    :hours,   "hour",   "hours"],
+    [1.minute,  :minutes, "min",    "mins"],
+    [1,         :seconds, "s",      "s"]
   ]
   
-  def human_duration
-    diff = {
-      :weeks    => 0,
-      :days     => 0,
-      :hours    => 0,
-      :minutes  => 0,
-      :seconds  => 0
-    }
+  ##
+  # Format a duration for display.
+  # 
+  # @param [Integer,nil] limit if set this will limit the
+  #   number of fields shown (ex: 2 = 2 months 3 weeks)
+  # 
+  # @return [String] the formatted duration
+  # 
+  def human_duration(limit = nil)
+    diff = Hash.new(0)
     
     ret = []
     
@@ -45,7 +49,13 @@ module TimeDuration
     
     TimeDuration.units.each.with_index do |unit|
       unit_name = unit[1]
-      ret << pluralize.(diff[unit_name], unit)     if diff[unit_name] > 0
+      if diff[unit_name] > 0
+        ret << pluralize.(diff[unit_name], unit)
+        
+        if ret.size == limit
+          break
+        end
+      end
     end
     
     ret.join(' ')
